@@ -11,6 +11,7 @@ use Pion\Laravel\ChunkUpload\Handler\AbstractHandler;
 use Pion\Laravel\ChunkUpload\ChunkFile;
 use Pion\Laravel\ChunkUpload\Handler\Traits\HandleParallelUploadTrait;
 use Pion\Laravel\ChunkUpload\Storage\ChunkStorage;
+use Illuminate\Support\Str;
 
 /**
  * Class ParallelSave.
@@ -87,7 +88,7 @@ class ParallelSave extends ChunkSave
         );
 
         return $this->chunkStorage->files(function ($file) use ($chunkFileName) {
-            return false === str_contains($file, $chunkFileName);
+            return false === Str::contains($file, $chunkFileName);
         });
     }
 
